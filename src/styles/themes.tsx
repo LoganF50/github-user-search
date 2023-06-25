@@ -69,6 +69,23 @@ const darkTheme = {
   name: "dark",
   color: {
     ...defaultTheme.color,
+    primary: "#0079FF",
+    error: "#F74646",
+    background: {
+      primary: "#1E2A47",
+      secondary: "#141D2F",
+      button: "#0079FF",
+      buttonHover: "#60ABFF",
+    },
+    text: {
+      primary: "#FFFFFF",
+      header: "#FFFFFF",
+      toggle: "#FFFFFF",
+      toggleHover: "#90A4D4",
+      button: "#FFFFFF",
+      input: "#FFFFFF",
+      placeholder: "#FFFFFF",
+    },
   },
 };
 
@@ -76,6 +93,23 @@ const lightTheme = {
   name: "light",
   color: {
     ...defaultTheme.color,
+    primary: "#0079FF",
+    error: "#F74646",
+    background: {
+      primary: "#FEFEFE",
+      secondary: "#F6F8FF",
+      button: "#0079FF",
+      buttonHover: "#60ABFF",
+    },
+    text: {
+      primary: "#4B6A9B",
+      header: "#222731",
+      toggle: "#697C9A",
+      toggleHover: "#222731",
+      button: "#FFFFFF",
+      input: "#222731",
+      placeholder: "#4B6A9B",
+    },
   },
 };
 
