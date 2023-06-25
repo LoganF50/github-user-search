@@ -1,9 +1,9 @@
 {
-  "name": "template",
+  "name": "github-user-search",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://LoganF50.github.io/<repo>/",
+  "homepage": "https://LoganF50.github.io/github-user-search/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

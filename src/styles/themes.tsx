@@ -34,7 +34,7 @@ const defaultTheme = {
     medium: "375ms",
     long: "500ms",
   },
-  fontFamily: {},
+  fontFamily: { primary: "'Space Mono', monospace" },
   fontSize: {
     base100: "0.75rem",
     base200: "0.875rem",
@@ -48,15 +48,8 @@ const defaultTheme = {
     base1000: "6rem",
   },
   fontWeight: {
-    thin: "100",
-    extraLight: "200",
-    light: "300",
     normal: "400",
-    medium: "500",
-    semiBold: "600",
     bold: "700",
-    extraBold: "800",
-    black: "900",
   },
   spacing: {
     base100: "0.125rem",
