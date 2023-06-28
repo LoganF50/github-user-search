@@ -78,6 +78,9 @@ const darkTheme = {
       backgroundHover: "#60ABFF",
       text: "#FFFFFF",
     },
+    card: {
+      text: "#FFFFFF",
+    },
     error: "#F74646",
     header: {
       text: "#FFFFFF",
@@ -107,6 +110,9 @@ const lightTheme = {
       background: "#0079FF",
       backgroundHover: "#60ABFF",
       text: "#FFFFFF",
+    },
+    card: {
+      text: "#2B3442",
     },
     error: "#F74646",
     header: {
