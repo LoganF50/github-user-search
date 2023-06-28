@@ -89,6 +89,10 @@ const darkTheme = {
       placeholder: "#FFFFFF",
       text: "#FFFFFF",
     },
+    link: {
+      text: "#FFFFFF",
+      unavailable: "#ffffff7f",
+    },
     primary: "#0079FF",
     text: "#FFFFFF",
     toggle: {
@@ -121,6 +125,10 @@ const lightTheme = {
     input: {
       placeholder: "#4B6A9B",
       text: "#222731",
+    },
+    link: {
+      text: "#4B6A9B",
+      unavailable: "#4b6a9b7f",
     },
     primary: "#0079FF",
     text: "#4B6A9B",

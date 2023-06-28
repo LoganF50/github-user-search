@@ -70,6 +70,9 @@ const DataValue = styled.div`
 
 const Links = styled.div`
   grid-area: links;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.base600};
 `;
 
 type LinkData = {
@@ -147,9 +150,14 @@ export const CardLayout: React.FC<CardLayoutProps> = ({
         </DataColumn>
       </Data>
       <Links>
-        {links.map((element) => {
+        {links.map((element, i) => {
           return (
-            <Link img={element.img} link={element.link} text={element.text} />
+            <Link
+              key={i}
+              img={element.img}
+              link={element.link}
+              text={element.text}
+            />
           );
         })}
       </Links>
