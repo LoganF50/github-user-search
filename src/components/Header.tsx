@@ -4,7 +4,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${({ theme }) => theme.color.text.header};
+  color: ${({ theme }) => theme.color.header.text};
   font-size: ${({ theme }) => theme.fontSize.base200};
   padding: ${({ theme }) => `${theme.spacing.base800} 0`};
 
@@ -14,12 +14,12 @@ const StyledHeader = styled.header`
     gap: ${({ theme }) => theme.spacing.base300};
     background-color: transparent;
     border: none;
-    color: ${({ theme }) => theme.color.text.toggle};
+    color: ${({ theme }) => theme.color.toggle.text};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
 
     &:hover {
       cursor: pointer;
-      color: ${({ theme }) => theme.color.text.toggleHover};
+      color: ${({ theme }) => theme.color.toggle.hoverText};
     }
   }
 

@@ -20,14 +20,14 @@ const StyledSearch = styled.form`
   input {
     flex: 1 1 auto;
     background-color: transparent;
-    color: ${({ theme }) => theme.color.text.input};
+    color: ${({ theme }) => theme.color.input.text};
     border: none;
     caret-color: ${({ theme }) => theme.color.primary};
     outline: none;
     text-overflow: ellipsis;
 
     &::placeholder {
-      color: ${({ theme }) => theme.color.text.primary};
+      color: ${({ theme }) => theme.color.input.placeholder};
       opacity: 1; //firefox
     }
 
@@ -37,15 +37,15 @@ const StyledSearch = styled.form`
   }
 
   button {
-    background-color: ${({ theme }) => theme.color.background.button};
-    color: ${({ theme }) => theme.color.text.button};
+    background-color: ${({ theme }) => theme.color.button.background};
+    color: ${({ theme }) => theme.color.button.text};
     border: none;
     border-radius: ${({ theme }) => theme.borderRadius.base300};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     padding: ${({ theme }) => theme.spacing.base500};
 
     &:hover {
-      background-color: ${({ theme }) => theme.color.background.buttonHover};
+      background-color: ${({ theme }) => theme.color.button.backgroundHover};
       cursor: pointer;
     }
 
@@ -55,7 +55,7 @@ const StyledSearch = styled.form`
     }
 
     &:disabled {
-      background-color: ${({ theme }) => theme.color.background.buttonHover};
+      background-color: ${({ theme }) => theme.color.button.backgroundHover};
       cursor: default;
     }
   }
