@@ -130,8 +130,8 @@ export const CardLayout: React.FC<CardLayoutProps> = ({
     <StyledCardLayout>
       <AvatarContainer>{avatar}</AvatarContainer>
       <UserInfo>
-        <Name>{name ? name : username.substring(1)}</Name>
-        <Username>{username}</Username>
+        <Name>{name ? name : username}</Name>
+        <Username>{`@${username}`}</Username>
         <div>{`Joined ${formatDate(createdAt)}`}</div>
       </UserInfo>
       <Bio>{bio ? bio : "This profile has no bio"}</Bio>

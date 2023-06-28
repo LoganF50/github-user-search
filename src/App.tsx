@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/globalStyle";
 import { Themes } from "./styles/themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import {
   CompanyIcon,
@@ -61,7 +61,7 @@ type UserData = {
 const tmpData: UserData = {
   avatarURL: "https://avatars.githubusercontent.com/u/583231?v=4",
   name: "The Octocat",
-  username: "@octocat",
+  username: "octocat",
   createdAt: new Date(2011, 0, 25),
   bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
   repoCount: 8,
@@ -86,8 +86,41 @@ function App() {
   };
 
   //TODO
-  const handleSearchUser = (e: React.FormEvent<HTMLFormElement>) => {
+  const getUserDataFromJSON = (data: any) => {
+    const returnData: UserData = {
+      avatarURL: data.avatar_url,
+      name: data.name,
+      username: data.login,
+      createdAt: new Date(data.created_at),
+      bio: data.bio,
+      repoCount: data.public_repos,
+      followerCount: data.followers,
+      followingCount: data.following,
+      location: data.location,
+      website: data.blog,
+      twitter: data.twitter_username,
+      company: data.company,
+    };
+
+    return returnData;
+  };
+
+  //TODO
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    handleUserSearch(userSearch);
+  };
+
+  //TODO
+  const handleUserSearch = (username: string) => {
+    if (userSearch.length > 1) {
+      fetch(`https://api.github.com/users/${username}`)
+        .then((response) => response.json())
+        .then((json) => setUserData(getUserDataFromJSON(json)))
+        .catch((json) => {
+          setHasError(true);
+        });
+    }
   };
 
   return (
@@ -105,8 +138,11 @@ function App() {
             />
             <Search
               value={userSearch}
-              handleSearchUser={handleSearchUser}
-              onChange={(e) => setUserSearch(e.target.value)}
+              handleSearchUser={handleSubmit}
+              onChange={(e) => {
+                setUserSearch(e.target.value);
+                setHasError(false);
+              }}
               hasError={hasError}
             />
             <CardLayout
