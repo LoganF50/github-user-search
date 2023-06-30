@@ -71,9 +71,14 @@ const DataValue = styled.div`
 
 const Links = styled.div`
   grid-area: links;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: ${({ theme }) => theme.spacing.base600};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+  }
 `;
 
 type LinkData = {

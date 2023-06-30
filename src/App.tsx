@@ -40,11 +40,13 @@ const StyledApp = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     justify-content: center;
+    width: min(600px, 100%);
   }
 `;
 
 const Error = styled.div`
   color: ${({ theme }) => theme.color.error};
+  margin-left: auto;
 `;
 
 type UserData = {
