@@ -19,6 +19,9 @@ const defaultTheme = {
     base300: "4px",
     base400: "8px",
   },
+  boxShadow: {
+    primary: "5px 5px 10px 0 rgba(0, 0, 0, 0.15)",
+  },
   breakpoint: {
     mobileSm: "320px",
     mobileMd: "375px",

@@ -35,12 +35,16 @@ const StyledApp = styled.div`
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.fontFamily.primary};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
-  min-width: 100%;
   padding: ${({ theme }) => `0 ${theme.spacing.base600}`};
+  width: min(450px, 100%);
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    max-width: 1200px;
+    justify-content: center;
   }
+`;
+
+const Error = styled.div`
+  color: ${({ theme }) => theme.color.error};
 `;
 
 type UserData = {
@@ -58,26 +62,13 @@ type UserData = {
   company: string | null;
 };
 
-const tmpData: UserData = {
-  avatarURL: "https://avatars.githubusercontent.com/u/583231?v=4",
-  name: "The Octocat",
-  username: "octocat",
-  createdAt: new Date(2011, 0, 25),
-  bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
-  repoCount: 8,
-  followerCount: 3938,
-  followingCount: 9,
-  location: "San Francisco",
-  website: "https://github.blog",
-  twitter: null,
-  company: "@github",
-};
+const baseURL = "https://api.github.com/users/";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(Themes.dark);
   const [userSearch, setUserSearch] = useState("");
   const [hasError, setHasError] = useState(false);
-  const [userData, setUserData] = useState<UserData>(tmpData);
+  const [userData, setUserData] = useState<UserData>();
 
   const toggleTheme = () => {
     currentTheme.name === "dark"
@@ -97,11 +88,11 @@ function App() {
       followerCount: data.followers,
       followingCount: data.following,
       location: data.location,
-      website: data.blog,
+      website: data.blog === "" ? null : data.blog,
       twitter: data.twitter_username,
       company: data.company,
     };
-
+    console.log(returnData);
     return returnData;
   };
 
@@ -111,17 +102,19 @@ function App() {
     handleUserSearch(userSearch);
   };
 
-  //TODO
-  const handleUserSearch = (username: string) => {
-    if (userSearch.length > 1) {
-      fetch(`https://api.github.com/users/${username}`)
-        .then((response) => response.json())
-        .then((json) => setUserData(getUserDataFromJSON(json)))
-        .catch((json) => {
-          setHasError(true);
-        });
+  const handleUserSearch = async (username: string) => {
+    const response = await fetch(`${baseURL}${username}`);
+    const data = await response.json();
+    if (response.ok) {
+      setUserData(getUserDataFromJSON(data));
+    } else {
+      setHasError(true);
     }
   };
+
+  useEffect(() => {
+    handleUserSearch("octocat");
+  }, []);
 
   return (
     <>
@@ -136,6 +129,7 @@ function App() {
               themeText={currentTheme.name === "dark" ? "light" : "dark"}
               handleThemeChange={toggleTheme}
             />
+            {hasError && <Error>No Results</Error>}
             <Search
               value={userSearch}
               handleSearchUser={handleSubmit}
@@ -145,36 +139,38 @@ function App() {
               }}
               hasError={hasError}
             />
-            <CardLayout
-              avatar={<Avatar src={userData.avatarURL} />}
-              name={userData.name}
-              username={userData.username}
-              createdAt={userData.createdAt}
-              bio={userData.bio}
-              repoCount={userData.repoCount}
-              followerCount={userData.followerCount}
-              followingCount={userData.followingCount}
-              links={[
-                { img: <LocationIcon />, text: userData.location },
-                {
-                  img: <WebsiteIcon />,
-                  link: userData.website,
-                  text: userData.website,
-                },
-                {
-                  img: <TwitterIcon />,
-                  link: userData.twitter,
-                  text: userData.twitter,
-                },
-                {
-                  img: <CompanyIcon />,
-                  link: userData.company
-                    ? `https://github.com/${userData.company.substring(1)}`
-                    : null,
-                  text: userData.company,
-                },
-              ]}
-            />
+            {userData && (
+              <CardLayout
+                avatar={<Avatar src={userData.avatarURL} />}
+                name={userData.name}
+                username={userData.username}
+                createdAt={userData.createdAt}
+                bio={userData.bio}
+                repoCount={userData.repoCount}
+                followerCount={userData.followerCount}
+                followingCount={userData.followingCount}
+                links={[
+                  { img: <LocationIcon />, text: userData.location },
+                  {
+                    img: <WebsiteIcon />,
+                    link: userData.website,
+                    text: userData.website,
+                  },
+                  {
+                    img: <TwitterIcon />,
+                    link: userData.twitter,
+                    text: userData.twitter,
+                  },
+                  {
+                    img: <CompanyIcon />,
+                    link: userData.company
+                      ? `https://github.com/${userData.company.substring(1)}`
+                      : null,
+                    text: userData.company,
+                  },
+                ]}
+              />
+            )}
           </StyledApp>
         </Wrapper>
       </ThemeProvider>

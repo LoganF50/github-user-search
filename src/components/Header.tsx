@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -32,7 +33,7 @@ const StyledHeader = styled.header`
 type HeaderProps = {
   themeIcon: React.ReactNode;
   themeText: string;
-  handleThemeChange: () => void;
+  handleThemeChange: MouseEventHandler;
 };
 
 export const Header: React.FC<HeaderProps> = ({

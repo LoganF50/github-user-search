@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { SearchIcon } from "./Icons";
+import { ChangeEventHandler, FormEventHandler } from "react";
 
 const StyledSearch = styled.form`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.color.background.primary};
   border-radius: ${({ theme }) => theme.borderRadius.base400};
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
   font-size: ${({ theme }) => theme.fontSize.base200};
   padding: ${({ theme }) => theme.spacing.base300};
 
@@ -18,13 +20,13 @@ const StyledSearch = styled.form`
   }
 
   input {
-    flex: 1 1 auto;
+    flex: 1 2 auto;
     background-color: transparent;
     color: ${({ theme }) => theme.color.input.text};
     border: none;
     caret-color: ${({ theme }) => theme.color.primary};
+    min-width: 0;
     outline: none;
-    text-overflow: ellipsis;
 
     &::placeholder {
       color: ${({ theme }) => theme.color.input.placeholder};
@@ -51,7 +53,7 @@ const StyledSearch = styled.form`
 
     &:active {
       transform: scale(0.9);
-      transition-duration: 100ms;
+      transition-duration: ${({ theme }) => theme.duration.short};
     }
 
     &:disabled {
@@ -61,11 +63,15 @@ const StyledSearch = styled.form`
   }
 `;
 
+const Error = styled.div`
+  color: ${({ theme }) => theme.color.error};
+`;
+
 type SearchProps = {
   hasError: boolean;
   value: string;
-  handleSearchUser: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSearchUser: FormEventHandler;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
 export const Search: React.FC<SearchProps> = ({
@@ -85,8 +91,9 @@ export const Search: React.FC<SearchProps> = ({
         id="search-user"
         value={value}
         onChange={onChange}
-        placeholder="Search Github username"
+        placeholder="Search Github username..."
       />
+      {hasError && <Error>No Results</Error>}
       <button type="submit" disabled={hasError}>
         Search
       </button>

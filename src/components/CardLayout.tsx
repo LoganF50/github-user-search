@@ -13,6 +13,7 @@ const StyledCardLayout = styled.div`
   row-gap: ${({ theme }) => theme.spacing.base700};
   background-color: ${({ theme }) => theme.color.background.primary};
   border-radius: ${({ theme }) => theme.borderRadius.base400};
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
   font-size: ${({ theme }) => theme.fontSize.base200};
   padding: ${({ theme }) =>
     `${theme.spacing.base800} ${theme.spacing.base700}`};
