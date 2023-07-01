@@ -13,7 +13,6 @@ import {
 } from "./components/Icons";
 import { Search } from "./components/Search";
 import { CardLayout } from "./components/CardLayout";
-import { Link } from "./components/Link";
 import { Avatar } from "./components/Avatar";
 
 const Wrapper = styled.div`
