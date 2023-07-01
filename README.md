@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution URL](https://your-solution-url.com)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/responsive-github-user-search-using-styled-components-and-react-H9GuvHJoSt)
 - Live Site URL: [Github URL](https://loganf50.github.io/github-user-search/)
 
 ## My process
