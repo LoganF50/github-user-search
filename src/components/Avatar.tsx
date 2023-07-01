@@ -3,6 +3,10 @@ import styled from "styled-components";
 const StyledAvatar = styled.img`
   border-radius: ${({ theme }) => theme.borderRadius.circular};
   height: 4.5rem;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    height: 7rem;
+  }
 `;
 
 type AvatarProps = {

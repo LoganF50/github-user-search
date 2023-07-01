@@ -17,6 +17,18 @@ const StyledCardLayout = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base200};
   padding: ${({ theme }) =>
     `${theme.spacing.base800} ${theme.spacing.base700}`};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: ${({ theme }) => theme.fontSize.base300};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.laptop}) {
+    grid-template-areas:
+      "avatar info"
+      "avatar bio"
+      "avatar data"
+      "avatar links";
+  }
 `;
 
 const AvatarContainer = styled.div`
@@ -25,18 +37,41 @@ const AvatarContainer = styled.div`
 
 const UserInfo = styled.div`
   grid-area: info;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+
+    & :nth-child(3) {
+      justify-self: end;
+    }
+  }
 `;
 
 const Name = styled.div`
   color: ${({ theme }) => theme.color.card.text};
   font-size: ${({ theme }) => theme.fontSize.base300};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: ${({ theme }) => theme.fontSize.base600};
+  }
 `;
 
 const Username = styled.div`
   color: ${({ theme }) => theme.color.primary};
   padding: ${({ theme }) =>
     `${theme.spacing.base200} 0 ${theme.spacing.base400}`};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding: ${({ theme }) => `${theme.spacing.base400} 0`};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.laptop}) {
+    padding: ${({ theme }) => `${theme.spacing.base300} 0`};
+  }
 `;
 
 const Bio = styled.div`
@@ -62,11 +97,19 @@ const DataColumn = styled.div`
 
 const DataHeader = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base100};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: ${({ theme }) => theme.fontSize.base200};
+  }
 `;
 
 const DataValue = styled.div`
   color: ${({ theme }) => theme.color.card.text};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: ${({ theme }) => theme.fontSize.base500};
+  }
 `;
 
 const Links = styled.div`

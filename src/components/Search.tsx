@@ -61,10 +61,27 @@ const StyledSearch = styled.form`
       cursor: default;
     }
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: ${({ theme }) => theme.fontSize.base400};
+
+    div {
+      padding: ${({ theme }) => theme.spacing.base500};
+    }
+
+    svg {
+      transform: none;
+    }
+  }
 `;
 
 const Error = styled.div`
   color: ${({ theme }) => theme.color.error};
+  display: none;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.laptop}) {
+    display: block;
+  }
 `;
 
 type SearchProps = {

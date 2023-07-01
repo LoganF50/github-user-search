@@ -22,9 +22,6 @@ const Wrapper = styled.div`
   min-height: 100vh;
   align-items: center;
   background-color: ${({ theme }) => theme.color.background.secondary};
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-  }
 `;
 
 const StyledApp = styled.div`
@@ -42,11 +39,19 @@ const StyledApp = styled.div`
     justify-content: center;
     width: min(600px, 100%);
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.laptop}) {
+    width: min(750px, 100%);
+  }
 `;
 
 const Error = styled.div`
   color: ${({ theme }) => theme.color.error};
   margin-left: auto;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.laptop}) {
+    display: none;
+  }
 `;
 
 type UserData = {
@@ -78,7 +83,6 @@ function App() {
       : setCurrentTheme(Themes.dark);
   };
 
-  //TODO
   const getUserDataFromJSON = (data: any) => {
     const returnData: UserData = {
       avatarURL: data.avatar_url,
@@ -98,7 +102,6 @@ function App() {
     return returnData;
   };
 
-  //TODO
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleUserSearch(userSearch);
@@ -113,6 +116,13 @@ function App() {
       setHasError(true);
     }
   };
+
+  useEffect(() => {
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches
+      ? setCurrentTheme(Themes.light)
+      : setCurrentTheme(Themes.dark);
+  }, []);
 
   useEffect(() => {
     handleUserSearch("octocat");
